@@ -1,5 +1,5 @@
 # fattennwjs
- Fatten C3 nwjs mac files from a x86 nwjs app and a arm nwjs
+ Fatten C3 nwjs mac files from a x86 nwjs app and a arm nwjs (when exporting from C3 export both Intel and ARM versions of nwjs)
 
  To make this available on the command line,
  
@@ -10,5 +10,7 @@
  5. npm link
  6. fattennwjs --help
  7. fattennwjs --arm mac64-arm --intel mac64 (fattened result will be in mac64-arm dir)
+ 8. fattened nwjs will be in mac64-arm dir
+ 9. test the single app on intel and arm platforms
 
  
