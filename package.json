@@ -13,7 +13,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pkg": "rimraf dist && pkg . --output dist"
+    "pkg": "rimraf dist && mkdir dist && pkg . --out-path ./dist"
   },
   "bin": {
     "fattennwjs": "./index.js"
