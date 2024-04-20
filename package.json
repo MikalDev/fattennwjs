@@ -2,9 +2,18 @@
   "name": "fattennwjs",
   "version": "1.0.1",
   "description": "Fattens up a NW.js app by using an arm and intel version of the app",
+  "pkg": {
+    "scripts": "build/**/*.js",
+    "assets": "views/**/*",
+    "targets": [
+      "node18-macos-x64"
+    ],
+    "outputPath": "dist"
+  },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pkg": "rimraf dist && pkg . --output dist"
   },
   "bin": {
     "fattennwjs": "./index.js"
@@ -12,8 +21,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "pkg": "^5.8.1",
+    "rimraf": "^5.0.5"
+  },
   "dependencies": {
-    "child-process": "^1.0.2",
     "fs-extra": "^11.2.0",
     "path": "^0.12.7",
     "yargs": "^17.7.2"
