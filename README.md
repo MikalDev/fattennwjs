@@ -9,5 +9,6 @@
  4. npm install
  5. npm link
  6. fattennwjs --help
+ 7. fattennwjs --arm mac64-arm --intel mac64
 
  
