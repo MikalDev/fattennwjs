@@ -1,0 +1,21 @@
+{
+  "name": "fattennwjs",
+  "version": "1.0.1",
+  "description": "Fattens up a NW.js app by using an arm and intel version of the app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "fattennwjs": "./index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "child-process": "^1.0.2",
+    "fs-extra": "^11.2.0",
+    "path": "^0.12.7",
+    "yargs": "^17.7.2"
+  }
+}
