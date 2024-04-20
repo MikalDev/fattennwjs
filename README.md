@@ -1,4 +1,7 @@
 # fattennwjs
+Executable Relases
+https://github.com/MikalDev/fattennwjs/releases
+
  Fatten C3 nwjs mac files from a x86 nwjs app and a arm nwjs (when exporting from C3 export both Intel and ARM versions of nwjs)
 
  To make this available on the command line,
