@@ -1,6 +1,6 @@
 {
   "name": "fattennwjs",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Fattens up a NW.js app by using an arm and intel version of the app",
   "pkg": {
     "scripts": "build/**/*.js",

@@ -22,6 +22,11 @@ const argv = yargs
         type: "boolean",
         demandOption: false,
     })
+    .option("sign", {
+        describe: "codesign the app directory with <keyName>",
+        type: "string",
+        demandOption: false,
+    })
     .help()
     .alias("help", "h")
     .epilogue(
@@ -127,6 +132,42 @@ async function findExecutables(dir, basePath, execArray) {
 }
 
 /**
+ * Sign the app directory using the codesign CLI tool.
+ *
+ * @param {string} armDirectory The path to the ARM directory.
+ * @param {string} keyName The name of the key to use for signing.
+ */
+function signAppDirectory(armDirectory, keyName) {
+    // Find the app directory in the ARM directory look for *.app directory name
+    const appDirectory = fs
+        .readdirSync(armDirectory)
+        .find((file) => file.endsWith(".app"));
+    if (!appDirectory) {
+        console.error("No app directory found in ARM directory.");
+        return;
+    }
+    // Get path to the app directory
+    const appPath = path.join(armDirectory, appDirectory);
+    const command = `codesign  --force --deep -s "${keyName}" "${appPath}"`;
+    console.log(`Signing app directory: ${appPath}`);
+    if (argv.preview) {
+        console.log(`Preview: ${command}`);
+        return;
+    }
+    execSync(command, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Error: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.error(`Stderr: ${stderr}`);
+            return;
+        }
+        console.log(`App directory signed: ${armDirectory}`);
+    });
+}
+
+/**
  * Execute or preview lipo commands for an array of path objects.
  *
  * @param {Array} pathArray Array of objects with `armPath` and `intelPath`.
@@ -139,7 +180,7 @@ function processExecArray(pathArray, preview) {
         if (preview) {
             console.log(`Preview: ${command}`);
         } else {
-            exec(command, (error, stdout, stderr) => {
+            execSync(command, (error, stdout, stderr) => {
                 if (error) {
                     console.error(`Error: ${error.message}`);
                     return;
@@ -173,6 +214,7 @@ async function main() {
         argv.arm,
         "v8_context_snapshot.x86_64.bin"
     );
+    if (argv.sign) signAppDirectory(argv.arm, argv.sign);
 }
 
 main().catch((err) => console.error(err));
